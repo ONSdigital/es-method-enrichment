@@ -1,0 +1,23 @@
+sudo: false
+language: python
+python:
+  - "3.5"
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+# command to run tests
+script:
+  - pytest
+deploy:
+  - provider: script
+    skip_cleanup: true
+    script: bash scripts/deploy.sh -a $ALGORITHM_NAME -u $ALGORITHMIA_USER -p $ALGORITHMIA_PASSWORD
+    on:
+      branch: master
+      tags: false
+  - provider: script
+    skip_cleanup: true
+    script: bash scripts/publish.sh -a $ALGORITHM_NAME -k $ES_ALGORITHMIA_API_KEY -t $TRAVIS_TAG -g $TRAVIS_REPO_SLUG
+    on:
+      branch: master
+      tags: true
