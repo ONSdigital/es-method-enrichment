@@ -14,7 +14,7 @@ env:
       - ALGORITHM_NAME=ESEnrichment
       - ALGORITHMIA_USER=travis
       - ES_ALGORITHMIA_API_ADDRESS=https://api.algpoc.com                                                         
-      - ES_ALGORITHM_DESCRIPTOR=$OWNER/$ALGORITHM_NAME/$TRAVIS_COMMI
+      - ES_ALGORITHM_DESCRIPTOR=$OWNER/$ALGORITHM_NAME/$TRAVIS_COMMIT
 deploy:
   - provider: script
     skip_cleanup: true
